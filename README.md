@@ -1,5 +1,6 @@
-# ReviewQueueNotifier
+# Review Queue Notifier
 
+##This is a Script for the Stack Exchange Network
 
 This Script will make it so that you are notified on the Desktop whenever new reviews are available, as long as you have a review tab open.
 
