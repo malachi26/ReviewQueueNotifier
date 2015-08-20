@@ -22,6 +22,12 @@
 
 
     Notification.requestPermission();
+
+    if (Notification.permission === "granted") {
+        var notification = new Notification("Hi there!");
+        setTimeout(notification.close.bind(notification), 1000);
+    } 
+
     var KEY_NEXT = 'NextReload';
     var DELAY = 15 * 1000; //30,000 milliseconds
     var currentTime = Date.now ? Date.now() : new Date().getTime();
@@ -57,6 +63,8 @@
             console.log("success, notification displayed ????")
             
         }
+        
+ 
         
         //if (reviewCount > 0) {
         //    var details = {
