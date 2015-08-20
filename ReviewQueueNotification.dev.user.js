@@ -16,17 +16,10 @@
 // @match *://*.stackapps.com/review    
 // @match *://*.superuser.com/review
 // @icon http://a.fsdn.com/allura/p/greasemonkey/icon
-// @resource genericIcon http://icons-search.com/img/fasticon/icomic_lnx.zip/icomic_lnx-icons-32X32-web.png-32x32.png
 // ==/UserScript==
 */
 
-
     Notification.requestPermission();
-
-    //if (Notification.permission === "granted") {
-    //    var notification = new Notification("Hi there!");
-    //    setTimeout(notification.close.bind(notification), 1000);
-    //} 
 
     var KEY_NEXT = 'NextReload';
     var DELAY = 15 * 1000; //30,000 milliseconds
@@ -56,22 +49,9 @@
         if (reviewCount > 0) {
             var details = {
                 body: reviewCount + ' Review Items',
-                icon: genericIcon
+                icon: 'http://icons-search.com/img/fasticon/icomic_lnx.zip/icomic_lnx-icons-32X32-web.png-32x32.png'
             } 
-            var n = new Notification(document.title, details);
-            setTimeout(n.close.bind(n), 15000);
-            console.log("success, notification displayed ????")
-            
-        }
-        
- 
-        
-        //if (reviewCount > 0) {
-        //    var details = {
-        //        title: document.title,
-        //        text: reviewCount + ' Review Items',
-        //        timeout: 15000
-        //    }
-        //    GM_notification(details, function(){console.log("success, the notification occurred")});
-        //}
+            var n = new Notification(document.title, details );
+            setTimeout(n.close.bind(n), 15000);            
+		    }
     }
