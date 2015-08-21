@@ -4,7 +4,7 @@
 // @author Malachi with help from Simon Forsberg
 // @description Shows a desktop notification when there review items in the queue. 
 // @namespace https://github.com/malachi26/SE-Scripts
-// @version 2.1.1beta
+// @version 2.1.1
 // @grant GM_getValue
 // @grant GM_setValue
 // @grant GM_notification
