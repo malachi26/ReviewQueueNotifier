@@ -16,7 +16,7 @@
 // @match *://*.askubuntu.com/review
 // @match *://*.stackapps.com/review    
 // @match *://*.superuser.com/review
-// @icon https://github.com/malachi26/ReviewQueueNotifier/blob/master/Icon.png
+// @icon https://github.com/malachi26/ReviewQueueNotifier/raw/master/Icon.png
 // ==/UserScript==
 */
 
@@ -50,7 +50,7 @@
         if (reviewCount > 0) {
             var details = {
                 body: reviewCount + ' Review Items',
-                icon: 'https://github.com/malachi26/ReviewQueueNotifier/blob/master/Icon.png'
+                icon: 'https://github.com/malachi26/ReviewQueueNotifier/raw/master/Icon.png'
             } 
             var n = new Notification(document.title, details );
             setTimeout(n.close.bind(n), 15000);            
