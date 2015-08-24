@@ -3,7 +3,7 @@
 // @name Review Queue Notification
 // @author Malachi with help from Simon Forsberg
 // @description Shows a desktop notification when there review items in the queue. 
-// @namespace https://github.com/malachi26/SE-Scripts
+// @namespace https://github.com/malachi26/ReviewQueueNotifier
 // @version 2.1.2 Next
 // @grant GM_getValue
 // @grant GM_setValue
