@@ -4,7 +4,7 @@
 // @author Malachi with help from Simon Forsberg
 // @description Shows a desktop notification when there review items in the queue. 
 // @namespace https://github.com/malachi26/ReviewQueueNotifier
-// @version 2.1.2
+// @version 2.1.3
 // @grant GM_getValue
 // @grant GM_setValue
 // @grant GM_notification
@@ -40,10 +40,13 @@
     if (timeDiff <= DELAY * 2) {
         var reviewCount = 0;
         var reviewItems = document.getElementsByClassName('dashboard-num');
-                
+        
+        
         for (var i = 0; i < reviewItems.length; i++){
-            reviewCount += parseInt((reviewItems[i].getAttribute("title")).replace(',', ''), 10);
-            console.log(reviewItems[i]);
+            if (reviewItems[i].parentNode.className != 'dashboard-count dashboard-faded'){
+                reviewCount += parseInt((reviewItems[i].getAttribute("title")).replace(',', ''), 10);
+                console.log(reviewItems[i]);
+            }
         }
         console.log(reviewCount);
    
