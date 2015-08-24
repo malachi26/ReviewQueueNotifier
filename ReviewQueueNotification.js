@@ -52,7 +52,7 @@
                 body: reviewCount + ' Review Items',
                 icon: 'https://github.com/malachi26/ReviewQueueNotifier/raw/master/Icon.png'
             } 
-            var n = new Notification(document.title, details );
+            var n = new Notification(document.title.replace(' Stack Exchange', '.SE'), details );
             setTimeout(n.close.bind(n), 15000);            
 		    }
     }
