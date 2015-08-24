@@ -1,5 +1,6 @@
-# ReviewQueueNotifier
+# Review Queue Notifier
 
+##This is a Script for the Stack Exchange Network
 
 This Script will make it so that you are notified on the Desktop whenever new reviews are available, as long as you have a review tab open.
 
@@ -15,6 +16,11 @@ This Script will make it so that you are notified on the Desktop whenever new re
 
 I altered a [zomis][2] script to create this version, [Check out his Moderator Version][3] 
 
+###Updates
+
+Version 2.1.1
+
+- Fixes issue where no notification would show up when using GreaseMonkey on Firefox derived browsers
 
   [1]: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7PTJ7V3ERTYWQ
   [2]: https://github.com/Zomis
