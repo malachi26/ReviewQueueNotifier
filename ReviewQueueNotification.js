@@ -52,7 +52,7 @@
                 body: reviewCount + ' Review Items',
                 icon: 'http://icons-search.com/img/fasticon/icomic_lnx.zip/icomic_lnx-icons-32X32-web.png-32x32.png'
             } 
-            var n = new Notification(document.title, details );
+            var n = new Notification(document.title.replace(' Stack Exchange', '.SE'), details );
             setTimeout(n.close.bind(n), 15000);            
 		    }
     }
