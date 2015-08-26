@@ -23,7 +23,7 @@
     Notification.requestPermission();
 
     var KEY_NEXT = 'NextReload';
-    var DELAY = 15 * 1000; //30,000 milliseconds
+    var DELAY = 120 * 1000; //120,000 milliseconds = 2 minutes
     var currentTime = Date.now ? Date.now() : new Date().getTime();
     var lastTime = GM_getValue(KEY_NEXT, 0);
     var nextTime = currentTime + DELAY;
