@@ -3,8 +3,8 @@
 // @name Review Queue Notification
 // @author Malachi with help from Simon Forsberg
 // @description Shows a desktop notification when there review items in the queue. 
-// @namespace https://github.com/malachi26/SE-Scripts
-// @version 2.1.2 Next
+// @namespace https://github.com/malachi26/ReviewQueueNotifier
+// @version 2.2.1 Next
 // @grant GM_getValue
 // @grant GM_setValue
 // @grant GM_notification
@@ -16,7 +16,7 @@
 // @match *://*.askubuntu.com/review
 // @match *://*.stackapps.com/review    
 // @match *://*.superuser.com/review
-// @icon https://github.com/malachi26/ReviewQueueNotifier/raw/master/Icon.png
+// @icon https://github.com/malachi26/ReviewQueueNotifier/raw/master/Icon2.jpg
 // ==/UserScript==
 */
 
@@ -40,19 +40,22 @@
     if (timeDiff <= DELAY * 2) {
         var reviewCount = 0;
         var reviewItems = document.getElementsByClassName('dashboard-num');
-                
+        
+        
         for (var i = 0; i < reviewItems.length; i++){
-            reviewCount += parseInt((reviewItems[i].getAttribute("title")).replace(',', ''), 10);
-            console.log(reviewItems[i]);
+            if (reviewItems[i].parentNode.className != 'dashboard-count dashboard-faded'){
+                reviewCount += parseInt((reviewItems[i].getAttribute("title")).replace(',', ''), 10);
+                console.log(reviewItems[i]);
+            }
         }
         console.log(reviewCount);
    
         if (reviewCount > 0) {
             var details = {
                 body: reviewCount + ' Review Items',
-                icon: 'https://github.com/malachi26/ReviewQueueNotifier/raw/master/Icon.png'
+                icon: 'https://github.com/malachi26/ReviewQueueNotifier/raw/master/Icon2.jpg'
             } 
-            var n = new Notification(document.title, details );
+            var n = new Notification(document.title.replace(' Stack Exchange', '.SE'), details );
             setTimeout(n.close.bind(n), 15000);            
 		    }
     }
