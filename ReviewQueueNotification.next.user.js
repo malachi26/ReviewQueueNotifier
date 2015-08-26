@@ -34,8 +34,8 @@
         window.location.reload(); 
     }, DELAY);
 
-    document.title = document.title.split(' - ')[1] + ' Review Queue'; // keep the site name
-
+    var notificationTitle = (document.title.split(' - ')[1] + ' Review Queue').replace(' Stack Exchange', '.SE');
+    
     // a way to detect that the script is being executed because of an automatic script reload, not by the user.
     if (timeDiff <= DELAY * 2) {
         var reviewCount = 0;
@@ -55,7 +55,7 @@
                 body: reviewCount + ' Review Items',
                 icon: 'https://github.com/malachi26/ReviewQueueNotifier/raw/master/Icon2.jpg'
             } 
-            var n = new Notification(document.title.replace(' Stack Exchange', '.SE'), details );
+            var n = new Notification(notificationTitle, details );
             setTimeout(n.close.bind(n), 15000);            
 		    }
     }
