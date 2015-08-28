@@ -56,6 +56,6 @@
                 icon: 'https://github.com/malachi26/ReviewQueueNotifier/raw/master/Icon2.jpg'
             } 
             var n = new Notification(notificationTitle, details );
-            setTimeout(n.close.bind(n), 15000);            
-		    }
+            setTimeout(n.close.bind(n), 100000); // Magic number is time to notification disappear      
+	}
     }
