@@ -1,10 +1,15 @@
 /** @preserve
 // ==UserScript==
 // @name Review Queue Notification
-// @author Malachi with help from Simon Forsberg
+// @author Malachi 
 // @description Shows a desktop notification when there review items in the queue. 
 // @namespace https://github.com/malachi26/ReviewQueueNotifier
-// @version 2.2.1 Next
+// @version 3.0.1 Next
+// @Authors
+//     -- Malachi26
+//     -- The Quill
+//     -- Zomis
+//
 // @grant GM_getValue
 // @grant GM_setValue
 // @grant GM_notification
@@ -55,7 +60,11 @@
                 body: reviewCount + ' Review Items',
                 icon: 'https://github.com/malachi26/ReviewQueueNotifier/raw/master/Resources/Icon2.jpg'
             } 
-            var n = new Notification(notificationTitle, details );
+            var n = new Notification(notificationTitle, details);
+			n.onclick = function(){
+				window.focus();
+				this.cancel();
+			}
             setTimeout(n.close.bind(n), 100000); // Magic number is time to notification disappear      
 	}
     }
