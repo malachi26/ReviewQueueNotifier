@@ -16,7 +16,7 @@
 // @match *://*.askubuntu.com/review
 // @match *://*.stackapps.com/review    
 // @match *://*.superuser.com/review
-// @icon https://github.com/malachi26/ReviewQueueNotifier/raw/master/Icon.png
+// @icon https://github.com/malachi26/ReviewQueueNotifier/raw/master/Resources/Icon2.png
 // ==/UserScript==
 */
 
@@ -53,9 +53,9 @@
         if (reviewCount > 0) {
             var details = {
                 body: reviewCount + ' Review Items',
-                icon: 'https://github.com/malachi26/ReviewQueueNotifier/raw/master/Icon.png'
+                icon: 'https://github.com/malachi26/ReviewQueueNotifier/raw/master/Resources/Icon2.png'
             } 
             var n = new Notification(document.title.replace(' Stack Exchange', '.SE'), details );
-            setTimeout(n.close.bind(n), 15000);            
+            setTimeout(n.close.bind(n), 60000);            
 		    }
     }

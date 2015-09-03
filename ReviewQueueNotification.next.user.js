@@ -16,7 +16,7 @@
 // @match *://*.askubuntu.com/review
 // @match *://*.stackapps.com/review    
 // @match *://*.superuser.com/review
-// @icon https://github.com/malachi26/ReviewQueueNotifier/raw/master/Icon2.jpg
+// @icon https://github.com/malachi26/ReviewQueueNotifier/raw/master/Resources/Icon2.jpg
 // ==/UserScript==
 */
 
@@ -53,7 +53,7 @@
         if (reviewCount > 0) {
             var details = {
                 body: reviewCount + ' Review Items',
-                icon: 'https://github.com/malachi26/ReviewQueueNotifier/raw/master/Icon2.jpg'
+                icon: 'https://github.com/malachi26/ReviewQueueNotifier/raw/master/Resources/Icon2.jpg'
             } 
             var n = new Notification(notificationTitle, details );
             setTimeout(n.close.bind(n), 100000); // Magic number is time to notification disappear      
