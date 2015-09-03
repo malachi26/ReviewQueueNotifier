@@ -24,4 +24,4 @@ Version 2.1.1
 
   [1]: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7PTJ7V3ERTYWQ
   [2]: https://github.com/Zomis
-  [3]: http://codereview.stackexchange.com/questions/97268/desktop-notifications-for-flags-and-queue-items
+  [3]: http://codereview.stackexchange.com/q/97268/18427
