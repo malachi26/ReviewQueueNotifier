@@ -1,4 +1,4 @@
-# Review Queue Notifier [![Code Review](http://www.zomis.net/codereview/shield/?qid=98619)](http://codereview.stackexchange.com/q/98619/62429)
+# Review Queue Notifier [![Code Review](http://www.zomis.net/codereview/shield/?qid=98619)](http://codereview.stackexchange.com/q/98619/18427)
 
 ##This is a script for the Stack Exchange Network
 
