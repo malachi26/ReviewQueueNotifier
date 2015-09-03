@@ -6,7 +6,7 @@ This script will make it so that you are notified on the Desktop whenever new re
 
 ###How to use
 - Install [Greasemonkey](http://www.greasespot.net/) (Firefox) or [Tampermonkey](http://tampermonkey.net/) (Chrome). These are userscript managers and allow the script to make use of `GM_*` functions
-- Install the script: <kbd>[install](https://github.com/malachi26/ReviewQueueNotifier/blame/master/ReviewQueueNotification.user.js)</kbd> or <kbd>[view source](https://github.com/malachi26/ReviewQueueNotifier/blob/master/ReviewQueueNotification.user.js)</kbd>
+- Install the script: <kbd>[install](https://github.com/malachi26/ReviewQueueNotifier/raw/master/ReviewQueueNotification.user.js)</kbd> or <kbd>[view source](https://github.com/malachi26/ReviewQueueNotifier/blob/master/ReviewQueueNotification.user.js)</kbd>
 - Any time you have a review queue window open, the script will run and alert you anytime there are reviews to be performed.
 
 ###Notes
