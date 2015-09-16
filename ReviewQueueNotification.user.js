@@ -4,7 +4,7 @@
 // @author Malachi with help from Simon Forsberg
 // @description Shows a desktop notification when there review items in the queue. 
 // @namespace https://github.com/malachi26/ReviewQueueNotifier
-// @version 2.2.1 Next
+// @version 2.2.1
 // @grant GM_getValue
 // @grant GM_setValue
 // @grant GM_notification
