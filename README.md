@@ -1,7 +1,7 @@
 # Review Queue Notifier 
-
-- Early Version [![Code Review](http://www.zomis.net/codereview/shield/?qid=98619)](http://codereview.stackexchange.com/q/98619/18427)
 - Current Development [![Code Review](http://www.zomis.net/codereview/shield/?qid=105615)](http://codereview.stackexchange.com/q/105615/18427)
+- Early Version [![Code Review](http://www.zomis.net/codereview/shield/?qid=98619)](http://codereview.stackexchange.com/q/98619/18427)
+
 
 ##This is a script for the Stack Exchange Network
 
