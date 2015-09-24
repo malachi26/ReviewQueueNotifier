@@ -7,22 +7,33 @@
 
 This script will make it so that you are notified on the Desktop whenever new reviews are available, as long as you have a review tab open.
 
-###How to use
+##How to use
 - Install [Greasemonkey](http://www.greasespot.net/) (Firefox) or [Tampermonkey](http://tampermonkey.net/) (Chrome). These are userscript managers and allow the script to make use of `GM_*` functions
 - Install the script: <kbd>[install](https://github.com/malachi26/ReviewQueueNotifier/raw/master/ReviewQueueNotification.user.js)</kbd> or <kbd>[view source](https://github.com/malachi26/ReviewQueueNotifier/blob/master/ReviewQueueNotification.user.js)</kbd>
 - Any time you have a review queue window open, the script will run and alert you anytime there are reviews to be performed.
 
-###Notes
+##Notes
 - I will continue to make advancements with the code, so please keep an eye on this project by starring!
 - Feel free to post issues to the GitHub repository, contributors actively watch for issues and will work on solving them ASAP!
 
 I altered a [zomis][2] script to create this version, [check out his Moderator version][3].
 
-###Updates
+##Updates
 
-Version 2.1.1
+###Version 2.1.1
 
 - Fixes issue where no notification would show up when using GreaseMonkey on Firefox-derived browsers.
+
+###Version 3.0.1 Next
+
+- Review Queue Page opens when the notification is clicked and the notification disappears
+- ??
+
+### Future Enhancements 
+
+- Possibly showing seperate notification for each queue on the review page, so that the user knows which one has reviews in it
+- Turning off specific queues
+- ??
 
 
 <sub>[Donate to future development!][1]</sub>
