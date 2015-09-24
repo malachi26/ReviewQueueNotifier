@@ -12,7 +12,6 @@ This script will make it so that you are notified on the Desktop whenever new re
 ###Notes
 - I will continue to make advancements with the code, so please keep an eye on this project by starring!
 - Feel free to post issues to the GitHub repository, contributors actively watch for issues and will work on solving them ASAP!
-- [Donate to future development!][1]
 
 I altered a [zomis][2] script to create this version, [check out his Moderator version][3].
 
@@ -22,6 +21,8 @@ Version 2.1.1
 
 - Fixes issue where no notification would show up when using GreaseMonkey on Firefox-derived browsers.
 
+
+<sub>[Donate to future development!][1]</sub>
   [1]: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7PTJ7V3ERTYWQ
   [2]: https://github.com/Zomis
   [3]: http://codereview.stackexchange.com/q/97268/18427
