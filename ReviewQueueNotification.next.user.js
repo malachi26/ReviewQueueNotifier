@@ -4,7 +4,7 @@
 // @author Malachi 
 // @description Shows a desktop notification when there review items in the queue. 
 // @namespace https://github.com/malachi26/ReviewQueueNotifier
-// @version 3.0.1 Next
+// @version 3.1.1 Next
 // @Authors
 //     -- Malachi26
 //     -- The Quill
@@ -25,46 +25,44 @@
 // ==/UserScript==
 */
 
+/*
+//Thanks @Joseph the Dreamer
+//
+*/
+
     Notification.requestPermission();
 
     var KEY_NEXT = 'NextReload';
-    var DELAY =  120 * 1000; //120,000 milliseconds = 2 Minutes
-    var currentTime = Date.now ? Date.now() : new Date().getTime();
+    var RELOAD =  120 * 1000; //120,000 milliseconds = 2 Minutes
+    var AUTO_DISMISS = 100 * 1000; 
+    var currentTime = Date.now;
     var lastTime = GM_getValue(KEY_NEXT, 0);
-    var nextTime = currentTime + DELAY;
+    var nextTime = currentTime + RELOAD;
     GM_setValue(KEY_NEXT, nextTime);
+    var timeDiff = currentTime - lastTime;
+    setTimeout(function(){window.location.reload();}, RELOAD);
 
-    var timeDiff = Math.abs(lastTime - currentTime);
-    setTimeout(function(){
-        window.location.reload(); 
-    }, DELAY);
-
+    // a way to detect that the script is being executed because of an automatic script reload, not by the user.
+    if (timeDiff > RELOAD * 2) return;
     var notificationTitle = (document.title.split(' - ')[1] + ' Review Queue').replace(' Stack Exchange', '.SE');
     
-    // a way to detect that the script is being executed because of an automatic script reload, not by the user.
-    if (timeDiff <= DELAY * 2) {
-        var reviewCount = 0;
-        var reviewItems = document.getElementsByClassName('dashboard-num');
-        
-        
-        for (var i = 0; i < reviewItems.length; i++){
-            if (reviewItems[i].parentNode.className != 'dashboard-count dashboard-faded'){
-                reviewCount += parseInt((reviewItems[i].getAttribute("title")).replace(',', ''), 10);
-                console.log(reviewItems[i]);
-            }
+    var reviewCount = 0;
+    var reviewItems = document.getElementsByClassName('dashboard-num');
+    
+    for (var i = 0; i < reviewItems.length; i++){
+        if (reviewItems[i].parentNode.className != 'dashboard-count dashboard-faded'){
+            reviewCount += parseInt((reviewItems[i].getAttribute("title")).replace(',', ''), 10);
         }
-        console.log(reviewCount);
-   
-        if (reviewCount > 0) {
-            var details = {
-                body: reviewCount + ' Review Items',
-                icon: 'https://github.com/malachi26/ReviewQueueNotifier/raw/master/Resources/Icon2.jpg'
-            } 
-            var n = new Notification(notificationTitle, details);
-			n.onclick = function(){
-				window.focus();
-				this.cancel();
-			}
-            setTimeout(n.close.bind(n), 100000); // Magic number is time to notification disappear      
-	}
     }
+    
+    if (reviewCount <= 0) return; 
+    var n = new Notification(notificationTitle, {
+        body: reviewCount + ' Review Items',
+        icon: 'https://github.com/malachi26/ReviewQueueNotifier/raw/master/Resources/Icon2.jpg'
+    });
+    n.onclick = function(){
+        window.focus();
+        this.cancel();
+    }
+    setTimeout(n.close.bind(n), AUTO_DISMISS); // Magic number is time to notification disappear      
+
