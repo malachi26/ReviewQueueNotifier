@@ -49,11 +49,27 @@
     var reviewCount = 0;
     var reviewItems = document.getElementsByClassName('dashboard-num');
     
-    for (var i = 0; i < reviewItems.length; i++){
-        if (reviewItems[i].parentNode.className != 'dashboard-count dashboard-faded'){
-            reviewCount += parseInt((reviewItems[i].getAttribute("title")).replace(',', ''), 10);
-        }
+   var reviewItemsArray = Array.prototype.slice.call(reviewItems);
+   var reviewCount = reviewItemsArray.reduce(function(count, reviewItem){
+       if (reviewItem.parentNode.className == 'dashboard-count dashboard-faded') {
+           return 0 + count;
+       }
+       return +reviewItem.getAttribute('title').replace(',', '') + count;
+       
+    }, 0);
+    
+    if (reviewCount <= 0) return; 
+    var n = new Notification(notificationTitle, {
+        body: reviewCount + ' Review Items',
+        icon: 'https://github.com/malachi26/ReviewQueueNotifier/raw/master/Resources/Icon2.jpg'
+    });
+    n.onclick = function(){
+        window.focus();
+        this.cancel();
     }
+    setTimeout(n.close.bind(n), AUTO_DISMISS);      
+
+
     
     if (reviewCount <= 0) return; 
     var n = new Notification(notificationTitle, {
