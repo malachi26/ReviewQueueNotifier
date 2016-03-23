@@ -10,10 +10,12 @@
 //     -- The Quill
 //     -- Zomis
 //
+// @require https://openuserjs.org/src/libs/sizzle/GM_config.js
 // @grant GM_getValue
 // @grant GM_setValue
 // @grant GM_notification
 // @grant Notifications
+// @grant GM_log
 // @match *://*.stackexchange.com/review
 // @match *://*.stackoverflow.com/review
 // @match *://*.mathoverflow.net/review
@@ -30,11 +32,63 @@
 //
 */
 
+GM_config.init({
+	'id':'ReviewQNotifierConfig',
+	'title': "settings",
+	'fields': {
+		'Refresh': {
+			'label':'Reload Time',
+			'type': 'text',
+			'default': '120'
+		}
+	}
+});
+
+
     Notification.requestPermission();
 
     var KEY_NEXT = 'NextReload';
-    var RELOAD =  120 * 1000; //120,000 milliseconds = 2 Minutes
-    var AUTO_DISMISS = 100 * 1000; 
+    var RELOAD =  GM_config.get('Refresh') * 1000; //120,000 milliseconds = 2 Minutes
+    
+	
+	var setReload = function(){
+		var timeInput = document.getElementById("reloadTime");
+		RELOAD = timeInput.text * 1000
+	};
+	
+	var setReloadScriptElement = document.createElement('script');
+	setReloadScriptElement.innerHTML = 'var setReload = function(){'+
+		' var timeInput = document.getElementById("reloadTime"); ' +
+		' RELOAD = timeInput.text * 1000 ' +
+	'};';
+	
+	
+	
+	var options = function(){
+		var optionsElement = document.createElement('div');
+		var label = document.createElement('label');
+		label.innerHTML = "Time between reloads in seconds";
+		label.setAttribute("text", "time between reloads in seconds: ");
+		var input = document.createElement('input');
+		//input.setAttribute("onblur", "getReloadTime()");
+		input.setAttribute("id", "reloadTime");
+		input.setAttribute("text", RELOAD);
+		label.appendChild(input);
+		optionsElement.appendChild(label)
+		
+		var submitTime = document.createElement("button");
+		//submitTime.setAttribute("type", "button");
+		submitTime.setAttribute("text", "Submit Reload");
+		submitTime.setAttribute("onclick","setReload()");
+		optionsElement.appendChild(submitTime);
+		
+		document.body.insertBefore(optionsElement, document.body.childNodes[0]);
+	};
+    options();
+	
+	
+	
+	var AUTO_DISMISS = 100 * 1000; 
     var currentTime = Date.now;
     var lastTime = GM_getValue(KEY_NEXT, 0);
     var nextTime = currentTime + RELOAD;
@@ -57,19 +111,6 @@
        return +reviewItem.getAttribute('title').replace(',', '') + count;
        
     }, 0);
-    
-    if (reviewCount <= 0) return; 
-    var n = new Notification(notificationTitle, {
-        body: reviewCount + ' Review Items',
-        icon: 'https://github.com/malachi26/ReviewQueueNotifier/raw/master/Resources/Icon2.jpg'
-    });
-    n.onclick = function(){
-        window.focus();
-        this.cancel();
-    }
-    setTimeout(n.close.bind(n), AUTO_DISMISS);      
-
-
     
     if (reviewCount <= 0) return; 
     var n = new Notification(notificationTitle, {

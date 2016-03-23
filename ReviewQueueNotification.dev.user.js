@@ -27,6 +27,14 @@
 
     Notification.requestPermission();
 
+	var reviewURLList = ['*://*.stackexchange.com/review'
+		, '*://*.stackoverflow.com/review'
+		, '*://*.mathoverflow.net/review'
+		, '*://*.serverfault.com/review'
+		, '*://*.askubuntu.com/review'
+		, '*://*.stackapps.com/review'
+		, '*://*.superuser.com/review']
+	
     var KEY_NEXT = 'NextReload';
     var DELAY =  12 * 1000; //120,000 milliseconds = 2 Minutes
     var currentTime = Date.now ? Date.now() : new Date().getTime();
@@ -34,6 +42,31 @@
     var nextTime = currentTime + DELAY;
     GM_setValue(KEY_NEXT, nextTime);
 
+	for (var i = 0; i < reviewURLList.length; i++)
+	{
+		if (windows.location.href.match(reviewURLList[i]))
+		{
+			
+		}
+		
+	}
+	
+	var options = function(){
+		var optionsElement = document.CreateElement('div');
+		var label = document.CreateElement('label').setAttribute("text", "time between reloads in seconds: ");
+		var input = document.CreateElement('input').setAttribute("onblur","getReloadTime");
+		input.setAttribute("id", "reloadTime");
+		input.setAttribute("text", DELAY);
+		optionsElement.appendChild(label)
+		optionsElement.appendChild(input);
+		
+		document.body.insertBefore(optionsElement, document.body.childNodes[0]);
+	}
+	var getReloadTime = function(){
+		var timeInput = document.getElementById("reloadTime");
+		DELAY = timeInput.text * 1000
+	}
+	
     var timeDiff = Math.abs(lastTime - currentTime);
     setTimeout(function(){
         window.location.reload(); 
