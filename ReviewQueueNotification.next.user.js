@@ -10,7 +10,6 @@
 //     -- The Quill
 //     -- Zomis
 //
-// @require https://openuserjs.org/src/libs/sizzle/GM_config.js
 // @grant GM_getValue
 // @grant GM_setValue
 // @grant GM_notification
@@ -32,23 +31,11 @@
 //
 */
 
-GM_config.init({
-	'id':'ReviewQNotifierConfig',
-	'title': "settings",
-	'fields': {
-		'Refresh': {
-			'label':'Reload Time',
-			'type': 'text',
-			'default': '120'
-		}
-	}
-});
-
 
     Notification.requestPermission();
 
     var KEY_NEXT = 'NextReload';
-    var RELOAD =  GM_config.get('Refresh') * 1000; //120,000 milliseconds = 2 Minutes
+    var RELOAD =  120 * 1000; //120,000 milliseconds = 2 Minutes
     
 	
 	var setReload = function(){
@@ -56,28 +43,18 @@ GM_config.init({
 		RELOAD = timeInput.text * 1000
 	};
 	
-	var setReloadScriptElement = document.createElement('script');
-	setReloadScriptElement.innerHTML = 'var setReload = function(){'+
-		' var timeInput = document.getElementById("reloadTime"); ' +
-		' RELOAD = timeInput.text * 1000 ' +
-	'};';
-	
-	
-	
 	var options = function(){
 		var optionsElement = document.createElement('div');
 		var label = document.createElement('label');
 		label.innerHTML = "Time between reloads in seconds";
 		label.setAttribute("text", "time between reloads in seconds: ");
 		var input = document.createElement('input');
-		//input.setAttribute("onblur", "getReloadTime()");
 		input.setAttribute("id", "reloadTime");
 		input.setAttribute("text", RELOAD);
 		label.appendChild(input);
 		optionsElement.appendChild(label)
 		
 		var submitTime = document.createElement("button");
-		//submitTime.setAttribute("type", "button");
 		submitTime.setAttribute("text", "Submit Reload");
 		submitTime.setAttribute("onclick","setReload()");
 		optionsElement.appendChild(submitTime);
