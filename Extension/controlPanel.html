@@ -1,4 +1,12 @@
 <DOCTYPE html>
 <head></head>
-<body></body>
+<body>
+<script>
+	chrome.contextMenus.create({
+		"title": "Buzz This",
+		"contexts": ["page", "selection", "image", "link"],
+		"onclick" : clickHandler
+	});
+	</script>
+</body>
 </html>

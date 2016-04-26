@@ -4,17 +4,21 @@
   "name": "Review Queue Notifier",
   "description": "Alerts you to new reviews on your favorite Stack Exchange site",
   "version": "0.1",
-  "icons": "https://github.com/malachi26/ReviewQueueNotifier/blob/ChromeExtension/Resources/Icon2.jpg",
+  "icons": {
+	"128": "Icon2.png",
+	"48" : "Icon2.png",
+	"16" : "Icon2.png"
+	},
 
   "page_action": {
-    "default_icon": "https://github.com/malachi26/ReviewQueueNotifier/blob/ChromeExtension/Resources/Icon2.jpg",
-    "default_popup": "controlPanel.html",
+    "default_icon": "Icon2.png",
+    
 	"default_title": "Review Queue Notifier"
   },
   "permissions": [
     "activeTab",
     "https://ajax.googleapis.com/",
-	"Notifications",
+	"notifications",
 	"contextMenus"
   ],
   "content_scripts": [
@@ -23,6 +27,5 @@
 		"js": ["script1.js"],
 		"run_at": "document_end"
 	}
-  ],
-  "background_page": "background.html"
+  ]
 }
