@@ -27,5 +27,6 @@
 		"js": ["script1.js"],
 		"run_at": "document_end"
 	}
-  ]
+  ],
+  "web_accessible_resources": ["Icon2.png","Icon2.jpg"]
 }

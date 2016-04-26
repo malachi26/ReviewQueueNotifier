@@ -17,11 +17,11 @@
         }
     }
     console.log(reviewCount);
-   
+   var image = chrome.extension.getURL('Icon2.jpg');
     if (reviewCount > 0) {
         var details = {
             body: reviewCount + ' Review Items',
-            icon: '/Icon2.png'
+            icon: image
         } 
         var n = new Notification(notificationTitle, details );
         setTimeout(n.close.bind(n), 100000); // Magic number is time to notification disappear      
