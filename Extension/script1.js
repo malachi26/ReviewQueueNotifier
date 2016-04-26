@@ -1,5 +1,4 @@
     Notification.requestPermission();
-
     var DELAY =  120 * 1000; //120,000 milliseconds = 2 Minutes
 
     setTimeout(function(){

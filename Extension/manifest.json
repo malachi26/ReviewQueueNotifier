@@ -11,16 +11,20 @@
 	},
 
   "page_action": {
-    "default_icon": "Icon2.png",
-    
+    "default_icon": "Icon2.png",    
 	"default_title": "Review Queue Notifier"
   },
   "permissions": [
     "activeTab",
+	"tabs",
     "https://ajax.googleapis.com/",
 	"notifications",
 	"contextMenus"
   ],
+  "background": {
+		
+		"scripts": ["jquery-2.2.0.js","background.js"]
+	},
   "content_scripts": [
 	{
 		"matches": ["http://codereview.stackexchange.com/review"],
