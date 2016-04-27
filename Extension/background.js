@@ -1,14 +1,28 @@
- 	var sites;
-	$.getJSON("http://api.stackexchange.com/2.2/sites", function (data){
-		sites = data;
-	});
+//Public Key
+var publicKey = '?key=hyEwZ8*W*OF7tQ3KYgNjzg((';
 
-	console.dir(sites);
-	chrome.tabs.onUpdated.addListener(function(tab) {
+chrome.tabs.onUpdated.addListener(isStackReviewPage);
 
-		for (var i = 0; i < Object.keys(sites).length; i++){
-			if (tab.url == sites[i].site_url + '/review'){
-				chrome.pageaction.show(tab.id);
+ chrome.tabs.onUpdated.addListener(function(tab) {
+	 $.getJSON('http://api.stackexchange.com/2.2/sites' + publicKey, function(data) {
+		 var sites = data.items;
+		 for (var site in sites.items) {
+			 if (tab.url == site.site_url + '/review'){
+				 chrome.pageaction.show(tab);
+				 return;
+			 }
+		 }
+	 });
+ });
+
+function isStackReviewPage (tabId, changeInfo, tab) {
+	$.getJSON('http://api.stackexchange.com/2.2/sites' + publicKey, function(data) {
+		var sites = data.items;
+		for (var site in sites.items) {
+			if (tab.url == site.site_url + '/review'){
+				chrome.pageaction.hide(tabId);
+				return;
 			}
 		}
 	});
+}

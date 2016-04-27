@@ -1,6 +1,13 @@
     Notification.requestPermission();
-    var DELAY =  120 * 1000; //120,000 milliseconds = 2 Minutes
-
+    //chrome.extension.sendRequest("show_page_action");
+	//var DELAY =  120 * 1000; //120,000 milliseconds = 2 Minutes
+	var DELAY = chrome.storage.sync.get({
+			refreshRate: 300000
+		}, function(item){
+			return item.refreshRate;
+		});
+	
+	
     setTimeout(function(){
         window.location.reload(); 
     }, DELAY);

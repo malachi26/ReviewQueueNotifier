@@ -22,15 +22,15 @@
 	"contextMenus"
   ],
   "background": {
-		
 		"scripts": ["jquery-2.2.0.js","background.js"]
 	},
   "content_scripts": [
 	{
-		"matches": ["http://codereview.stackexchange.com/review"],
+		"matches": ["http://*.stackexchange.com/review", "http://stackoverflow.com/review", "http://superuser.com/review"],
 		"js": ["script1.js"],
 		"run_at": "document_end"
 	}
   ],
-  "web_accessible_resources": ["Icon2.png","Icon2.jpg"]
+  "web_accessible_resources": ["Icon2.png","Icon2.jpg"],
+  "options_page": "options.html"
 }
