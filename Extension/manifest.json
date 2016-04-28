@@ -19,7 +19,8 @@
 	"tabs",
     "https://ajax.googleapis.com/",
 	"notifications",
-	"contextMenus"
+	"contextMenus",
+	"storage"
   ],
   "background": {
 		"scripts": ["jquery-2.2.0.js","background.js"]

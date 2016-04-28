@@ -1,17 +1,22 @@
     Notification.requestPermission();
-    //chrome.extension.sendRequest("show_page_action");
-	//var DELAY =  120 * 1000; //120,000 milliseconds = 2 Minutes
-	var DELAY = chrome.storage.sync.get({
+    
+	var DELAY =  300 * 1000; //120,000 milliseconds = 2 Minutes
+	function getDelayAmount() { 
+		chrome.storage.sync.get({
 			refreshRate: 300000
 		}, function(item){
-			return item.refreshRate;
+			DELAY = item.refreshRate;
 		});
+	}
+	getDelayAmount();
 	
-	
-    setTimeout(function(){
+	setTimeout(function(){
         window.location.reload(); 
     }, DELAY);
-
+	
+	
+	
+	console.log(DELAY);
     var notificationTitle = (document.title.split(' - ')[1] + ' Review Queue').replace(' Stack Exchange', '.SE');
     var reviewCount = 0;
     var reviewItems = document.getElementsByClassName('dashboard-num');

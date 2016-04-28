@@ -1,10 +1,11 @@
 $(function() {
 	//Public Key
 	var publicKey = '?key=hyEwZ8*W*OF7tQ3KYgNjzg((';
+	var refreshRate;
 	
-	function getRefreshTime () {
+	function getRefreshRate () {
 		var time = document.getElementById('refresh').value;
-		return time * 1000; //to get milliseconds
+		refreshRate = time * 1000; //in milliseconds
 	}
 	function setSiteList() {
 		$.getJSON('http://api.stackexchange.com/2.2/sites' + publicKey, function(data) {
@@ -16,28 +17,26 @@ $(function() {
 	}
 	setSiteList();
 	
-	function getSites(){
-		//get sites from input element
-		var input = $('#sites');
+	// function getSites(){
+		// //get sites from input element
+		// var input = $('#sites');
 		
-	}
+	// }
 	
 	// Saves options to chrome.storage
 	function save_options() {
-	//var color = document.getElementById('color').value;
-	//var likesColor = document.getElementById('like').checked;
-	
-	chrome.storage.sync.set({
-		refreshRate: getRefreshTime(),
-		site: getSite()
-	}, function() {
-		// Update status to let user know options were saved.
-		var status = document.getElementById('status');
-		status.textContent = 'Options saved.';
-		setTimeout(function() {
-			status.textContent = '';
-		}, 750);
-	});
+		getRefreshRate();
+		chrome.storage.sync.set({
+			refreshRate: refreshRate//,
+			//site: getSite()
+		}, function() {
+			// Update status to let user know options were saved.
+			var status = document.getElementById('status');
+			status.textContent = 'Options saved.';
+			setTimeout(function() {
+				status.textContent = '';
+			}, 750);
+		});
 	}
 	
 	// Restores select box and checkbox state using the preferences
@@ -45,9 +44,11 @@ $(function() {
 	function restore_options() {
 		// Use default value color = 'red' and likesColor = true.
 		chrome.storage.sync.get({
+			refreshRate: 300000
 		//	favoriteColor: 'red',
 		//	likesColor: true
 		}, function(items) {
+			document.getElementById('refresh').value = items.refreshRate;
 		//	document.getElementById('color').value = items.favoriteColor;
 		//	document.getElementById('like').checked = items.likesColor;
 		});
