@@ -28,7 +28,7 @@
   "content_scripts": [
 	{
 		"matches": ["http://*.stackexchange.com/review", "http://stackoverflow.com/review", "http://superuser.com/review"],
-		"js": ["script1.js"],
+		"js": ["jquery-2.2.0.js","script1.js"],
 		"run_at": "document_end"
 	}
   ],

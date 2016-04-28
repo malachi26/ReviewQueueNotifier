@@ -20,7 +20,7 @@ function isStackReviewPage (tabId, changeInfo, tab) {
 		var sites = data.items;
 		for (var site in sites.items) {
 			if (tab.url == site.site_url + '/review'){
-				chrome.pageaction.hide(tabId);
+				chrome.pageaction.show(tabId);
 				return;
 			}
 		}
