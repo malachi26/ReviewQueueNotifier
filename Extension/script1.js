@@ -9,27 +9,29 @@ $( document ).ready(function() {
 	getAllTehSitez();
 	
 	function getAllTehSitez() {
-		$.getJSON('http://api.stackexchange.com/2.2/sites' + publicKey, function(data) {
+		console.log("getAllTehSitez has been called");
+		$.getJSON('http://api.stackexchange.com/2.2/sites' + publicKey + '&pagesize=100', function(data) {
 			sites = data.items;
 			isActiveSite();
 		});
 	}
 
 	function isActiveSite() {
-		var tabUrl = getUrl();
-		for (var site in sites) {
-			if (tabUrl == sites[site].site_url + '/review') {
-				console.log(tabUrl);
-				console.log(sites[site].name);
-				if (ACTIVESITES.indexOf(sites[site].name.toLowerCase()) > -1) {
-					runRQN();
-					console.log("runRQN called");
+		console.log("isActiveSite has been called");
+		chrome.runtime.sendMessage("getUrl", function(response) {
+			var tabUrl = response.url;
+			for (var site in sites) {
+				if ((tabUrl == sites[site].site_url + '/review') 
+					&& (ACTIVESITES.indexOf(sites[site].name.toLowerCase()) > -1)) {
+						runRQN();
+						return;
 				}
 			}
-		}		
-	}
+		});	
+	}	
 	
 	function GetSelectedSites () {
+		console.log("GetSelectedSites has been called");
 		chrome.storage.sync.get({
 			activeSites: "Code Review"
 		}, function(item) {
@@ -37,17 +39,9 @@ $( document ).ready(function() {
 		});
 	}
 	
-	function getUrl () {
-		var returnString;
-		chrome.runtime.sendMessage({getUrl: ""}, function(response) {
-			returnString = response.url;
-		});
-		return returnString;
-	}
-	
 	function runRQN () {
+		console.log("runRQN has been called")
 		Notification.requestPermission();
-		console.log("RQN running");
 		var DELAY =  300 * 1000; //120,000 milliseconds = 2 Minutes
 		function getDelayAmount() { 
 			chrome.storage.sync.get({

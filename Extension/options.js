@@ -1,28 +1,29 @@
 $(function() {
+	restore_options();
 	//Public Key
 	var publicKey = '?key=hyEwZ8*W*OF7tQ3KYgNjzg((';
 	var refreshRate;
 	var sites;
 	var activeSites = new Array();
+	setSiteList();
+	
 	function getRefreshRate () {
 		var time = document.getElementById('refresh').value;
 		refreshRate = time * 1000; //in milliseconds
 	}
 	function setSiteList() {
-		$.getJSON('http://api.stackexchange.com/2.2/sites' + publicKey, function(data) {
+		$.getJSON('http://api.stackexchange.com/2.2/sites' + publicKey + '&pagesize=100', function(data) {
 			sites = data.items;
 			for (var site in sites) {
 				$("#site").append("<option value='" + sites[site].site_url + "'>" + sites[site].name + "</option>");
 			}
 		});
 	}
-	setSiteList();
 	
 	function getSites(){
 		//var input = $("#sites").value;
 		var input = document.getElementById('sites').value;
-		console.log(input);
-		activeSites = input.toLowerCase().split(',');
+		activeSites = input.replace(", ", ",").toLowerCase().split(',');;
 		console.log(activeSites);
 	}
 	
@@ -41,6 +42,7 @@ $(function() {
 				status.textContent = '';
 			}, 750);
 		});
+		
 	}
 	
 	// Restores select box and checkbox state using the preferences
@@ -50,13 +52,9 @@ $(function() {
 		chrome.storage.sync.get({
 			refreshRate: 300000,
 			activeSites: 'Code Review'
-		//	favoriteColor: 'red',
-		//	likesColor: true
 		}, function(items) {
 			$("#refresh").value = items.refreshRate;
 			$("#sites").value = items.sites;
-		//	document.getElementById('color').value = items.favoriteColor;
-		//	document.getElementById('like').checked = items.likesColor;
 		});
 	}
 	document.addEventListener('DOMContentLoaded', restore_options);
