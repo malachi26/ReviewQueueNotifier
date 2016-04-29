@@ -1,4 +1,5 @@
 //(function () {
+$( document ).ready(function() {
 	//Public Key
 	var publicKey = '?key=hyEwZ8*W*OF7tQ3KYgNjzg((';
 	var sites;
@@ -15,17 +16,17 @@
 	}
 
 	function isActiveSite() {
-		console.log(sites);
+		var tabUrl = getUrl();
 		for (var site in sites) {
-			if (tab.url == sites[site].site_url + '/review') {
-				console.log(tab.url);
-				console.log(site.name);
+			if (tabUrl == sites[site].site_url + '/review') {
+				console.log(tabUrl);
+				console.log(sites[site].name);
 				if (ACTIVESITES.indexOf(sites[site].name.toLowerCase()) > -1) {
 					runRQN();
 					console.log("runRQN called");
 				}
 			}
-		}
+		}		
 	}
 	
 	function GetSelectedSites () {
@@ -34,6 +35,14 @@
 		}, function(item) {
 			ACTIVESITES = item.activeSites;
 		});
+	}
+	
+	function getUrl () {
+		var returnString;
+		chrome.runtime.sendMessage({getUrl: ""}, function(response) {
+			returnString = response.url;
+		});
+		return returnString;
 	}
 	
 	function runRQN () {
@@ -77,6 +86,6 @@
 			setTimeout(n.close.bind(n), 100000); // Magic number is time to notification disappear      
 		}
 	}
-	
+});	
 
 //})();

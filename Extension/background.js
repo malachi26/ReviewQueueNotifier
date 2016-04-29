@@ -26,3 +26,9 @@ function isStackReviewPage (tabId, changeInfo, tab) {
 		}
 	});
 }
+
+chrome.runtime.onMessage.addListener(
+	function(request, sender, sendResponse){
+		sendResponse({url: sender.tab.url});
+		return true;
+	})
