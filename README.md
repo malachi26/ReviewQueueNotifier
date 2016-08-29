@@ -8,6 +8,8 @@ This is a version that is in the works and will give the user more freedom over 
 
 If you are interested in helping out with this project please feel free to take a look at the Issues list and Submit a Pull Request when you have resolved an issue.
 
+All Issues for the Chrome Extension have been tagged [Chrome Extension](https://github.com/malachi26/ReviewQueueNotifier/issues?q=is%3Aopen+is%3Aissue+label%3A%22Chrome+Extension%22)
+
 Thank you
 
 # User Script
