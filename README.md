@@ -2,6 +2,15 @@
 - Current Development [![Code Review](http://www.zomis.net/codereview/shield/?qid=105615)](http://codereview.stackexchange.com/q/105615/18427)
 - Early Version [![Code Review](http://www.zomis.net/codereview/shield/?qid=98619)](http://codereview.stackexchange.com/q/98619/18427)
 
+# Chrome Extension
+
+This is a version that is in the works and will give the user more freedom over the notifications that they receive
+
+If you are interested in helping out with this project please feel free to take a look at the Issues list and Submit a Pull Request when you have resolved an issue.
+
+Thank you
+
+# User Script
 
 ##This is a script for the Stack Exchange Network
 
