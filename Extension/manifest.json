@@ -1,0 +1,32 @@
+{
+  "manifest_version": 2,
+
+  "name": "Review Queue Notifier",
+  "description": "Alerts you to new reviews on your favorite Stack Exchange site",
+  "version": "0.1",
+  "icons": {
+	"128": "Icon2.png",
+	"48" : "Icon2.png",
+	"16" : "Icon2.png"
+	},
+
+  "page_action": {
+    "default_icon": "Icon2.png",
+    
+	"default_title": "Review Queue Notifier"
+  },
+  "permissions": [
+    "activeTab",
+    "https://ajax.googleapis.com/",
+	"notifications",
+	"contextMenus"
+  ],
+  "content_scripts": [
+	{
+		"matches": ["http://codereview.stackexchange.com/review"],
+		"js": ["script1.js"],
+		"run_at": "document_end"
+	}
+  ],
+  "web_accessible_resources": ["Icon2.png","Icon2.jpg"]
+}
