@@ -23,7 +23,7 @@
   ],
   "content_scripts": [
 	{
-		"matches": ["http://codereview.stackexchange.com/review"],
+		"matches": ["https://codereview.stackexchange.com/review"],
 		"js": ["script1.js"],
 		"run_at": "document_end"
 	}
