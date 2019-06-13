@@ -47,7 +47,5 @@ I altered a [zomis][2] script to create this version, [check out his Moderator v
 - ??
 
 
-<sub>[Donate to future development!][1]</sub>
-  [1]: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7PTJ7V3ERTYWQ
   [2]: https://github.com/Zomis
   [3]: http://codereview.stackexchange.com/q/97268/18427
