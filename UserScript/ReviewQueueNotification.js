@@ -22,40 +22,33 @@
 
     Notification.requestPermission();
 
-    var KEY_NEXT = 'NextReload';
-    var DELAY = 120 * 1000; //120,000 milliseconds = 2 minutes
-    var currentTime = Date.now ? Date.now() : new Date().getTime();
-    var lastTime = GM_getValue(KEY_NEXT, 0);
-    var nextTime = currentTime + DELAY;
+    const KEY_NEXT = 'NextReload';
+    const DELAY =  120 * 1000; //120,000 milliseconds = 2 minutes
+    const currentTime = Date.now ? Date.now() : new Date().getTime();
+    const lastTime = GM_getValue(KEY_NEXT, 0);
+    const nextTime = currentTime + DELAY;
     GM_setValue(KEY_NEXT, nextTime);
 
     var timeDiff = Math.abs(lastTime - currentTime);
-    setTimeout(function(){
-        window.location.reload(); 
-    }, DELAY);
+    setTimeout(window.location.reload, DELAY);
 
     document.title = document.title.split(' - ')[1] + ' Review Queue'; // keep the site name
 
     // a way to detect that the script is being executed because of an automatic script reload, not by the user.
     if (timeDiff <= DELAY * 2) {
-        var reviewCount = 0;
-        var reviewItems = document.getElementsByClassName('dashboard-num');
-        
-        
-        for (var i = 0; i < reviewItems.length; i++){
-            if (reviewItems[i].parentNode.className != 'dashboard-count dashboard-faded'){
-                reviewCount += parseInt((reviewItems[i].getAttribute("title")).replace(',', ''), 10);
-                console.log(reviewItems[i]);
-            }
+        let reviewCount = 0;
+        const reviewItems = document.querySelectorAll(':not(.o30) > .fs-subheading[title]');
+        for (const reviewItem of reviewItems) {
+            reviewCount += parseInt(reviewItem.title, 10);
         }
-        console.log(reviewCount);
-   
+        console.log('reviewCount: ', reviewCount);
+
         if (reviewCount > 0) {
-            var details = {
+            const details = {
                 body: reviewCount + ' Review Items',
                 icon: 'https://github.com/malachi26/ReviewQueueNotifier/raw/master/Resources/Icon2.png'
-            } 
-            var n = new Notification(document.title.replace(' Stack Exchange', '.SE'), details );
-            setTimeout(n.close.bind(n), 15000);            
-		    }
+            }
+            const n = new Notification(document.title.replace(' Stack Exchange', '.SE'), details );
+            setTimeout(n.close.bind(n), 15000);
+        }
     }
